@@ -32,16 +32,19 @@
 //     console.log("hiiv")
 // }
 
-function display(cv){
-    console.log("welcome to ABES");
-    cv();
-}
+// function display(cv){
+//     console.log("welcome to ABES");
+//     cv();
+// }
 
-function lf(){
-    console.log(" learn fsd with satwik ma'am")
-}
+// function lf(){
+//     console.log(" learn fsd with satwik ma'am")
+// }
 
-display(lf)
+// display(lf)
 
+// (()=>{
+//     console.log("hey")
+// })()
 
-
+// 
