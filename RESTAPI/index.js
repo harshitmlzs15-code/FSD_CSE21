@@ -24,6 +24,14 @@ app.post('/users', (req, res) => {
   res.json(user);
 });
 
+app.put('/users/:id', (req, res) => {
+  let user = users.find(u => u.id === parseInt(req.params.id));
+  user.name = req.body.name;
+  user.email = req.body.email;
+  res.send("user updated successfully");
+  res.json(user);
+});
+
 app.listen(8000, () => {
   console.log('Server is running on port 8000');
 });
