@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 
 const app = express();
 
@@ -26,14 +26,12 @@ let products = [
 ];
 
 
-// GET all products
-app.get("/api/products", (req, res) => {
+app.get("/products", (req, res) => {
     res.status(200).json(products);
 });
 
 
-// GET product by ID
-app.get("/api/products/:id", (req, res) => {
+app.get("/products/:id", (req, res) => {
 
     const id = parseInt(req.params.id);
 
@@ -48,15 +46,19 @@ app.get("/api/products/:id", (req, res) => {
     res.status(200).json(product);
 });
 
-
-// POST - create product
-app.post("/api/products", (req, res) => {
+app.post("/products", (req, res) => {
 
     const { name, price, category } = req.body;
 
     if (!name || !price || !category) {
         return res.status(400).json({
             message: "Name, price and category are required"
+        });
+    }
+
+    if (typeof price !== 'number' || price <= 0) {
+        return res.status(400).json({
+            message: "Price must be a positive number"
         });
     }
 
@@ -73,8 +75,8 @@ app.post("/api/products", (req, res) => {
 });
 
 
-// PUT - update product
-app.put("/api/products/:id", (req, res) => {
+
+app.put("/products/:id", (req, res) => {
 
     const id = parseInt(req.params.id);
 
@@ -88,6 +90,18 @@ app.put("/api/products/:id", (req, res) => {
 
     const { name, price, category } = req.body;
 
+    if (!name || !price || !category) {
+        return res.status(400).json({
+            message: "Name, price and category are required"
+        });
+    }
+
+    if (typeof price !== 'number' || price <= 0) {
+        return res.status(400).json({
+            message: "Price must be a positive number"
+        });
+    }
+
     product.name = name;
     product.price = price;
     product.category = category;
@@ -96,8 +110,8 @@ app.put("/api/products/:id", (req, res) => {
 });
 
 
-// DELETE product
-app.delete("/api/products/:id", (req, res) => {
+
+app.delete("/products/:id", (req, res) => {
 
     const id = parseInt(req.params.id);
 

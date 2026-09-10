@@ -8,12 +8,12 @@ let users = [
 ];
 app.use(express.json());
 
-//GET: fetch all users data
+
 app.get('/users', (req, res) => {
   res.json(users);
 });
 
-//POST: create a new user
+
 app.post('/users', (req, res) => {
   let user = {
     id: users.length + 1,
